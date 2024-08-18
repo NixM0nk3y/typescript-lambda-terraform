@@ -1,0 +1,7 @@
+terraform-null-label:
+  source: "https://github.com/cloudposse/terraform-null-label.git"
+  version: "0.25.0"
+
+terraform-aws-lambda:
+  source: "https://github.com/terraform-aws-modules/terraform-aws-lambda.git"
+  version: "v7.7.1"

@@ -1,0 +1,1 @@
+FROM public.ecr.aws/sam/build-nodejs20.x:latest-x86_64

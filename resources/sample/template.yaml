@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+
+  SAM Template for sample lambda
+
+Globals:
+  Function:
+    Timeout: 30
+    Tracing: Active
+
+Resources:
+  Lambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: lambda.lambdaHandler
+      Runtime: nodejs20.x
+      MemorySize: 256
+      Architectures:
+      - x86_64
+      Environment:
+        Variables:
+          LOG_LEVEL: INFO
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Format: esm
+        Minify: true
+        Target: es2020
+        Sourcemap: false
+        SourcesContent: false
+        UseNpmCi: true
+        OutExtension:
+          - .js=.mjs     
+        EntryPoints:
+        - src/lambda.ts
+        banner:
+        - js=import { createRequire } from 'module'; const require = createRequire(import.meta.url);
+
+Outputs:
+  SampleFunction:
+    Description: Lambda Function ARN
+    Value: !GetAtt Lambda.Arn
+
